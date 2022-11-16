@@ -1,5 +1,5 @@
 Terminals :
-+ - * / % and or variable number is ! not = > < ( ) { } true false string ' " if elif else : print input str float int double switch case default try catch while for in range def class import as from return raise len range , break pass continue with open null function throw let
++ - * / % and or variable number is ! not = > < ( ) { } true false string ' " if else if else : print input str float int double switch case default try catch while for in range def class import as from return raise len range , break pass continue with open null function throw let
 Variables :
 
 Productions:
