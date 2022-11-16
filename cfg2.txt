@@ -15,4 +15,4 @@ VALARRAY -> VAL | VALARRAY , VALARRAY | ARRAY;
 ARRAY -> [ ] | [ VALARRAY ] | ( ) | ( VALARRAY );
 BOOLEAN -> true | false;
 TRY -> try { S } CATCH;
-CATCH -> catch ( VAR ) { S };
+CATCH -> catch ( VAR ) { S } | catch ( VAR ) { S } FINALLY;
