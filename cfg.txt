@@ -8,6 +8,7 @@ OPERATOR -> + | - | * | / | %;
 VAR -> variable | VARCLASS ;
 VARCLASS -> VARCLASS . VARCLASS | VARCLASS . FUNCTION | variable | FUNCTION;
 VAL -> number | VV OPERATOR VV | VV / / VV | VV * * VV |  ( VV ) | BOOL;
+STRING -> STRING + STRING | ' string ' | " string " | ' string ' + ' string ' | " string " + " string " | " string " + ' string ' | ' string ' + " string " | ( STRING );
 VV -> VAR | VAL | VV OPERATOR VV | VV , VV;
 INBRACKET -> ( ) | ( VV );
 DELETE -> delete VAR;
@@ -35,7 +36,7 @@ OPARITH -> + | - | * | / | %;
 COMP -> BOOLEAN | VAR | COMP OPLOGIC COMP | COMPOPRT OPCOMP COMPOPRT | COMPOPRT RELATION COMPOPRT;
 COMPOPRT -> COMPOPRT OPARITH COMPOPRT | COMPOPRT RELATION COMPOPRT | VAL | VAL OPARITH VAL | VAL * * VAL | VAL / / VAL | VAL > > VAL | VAL < < VAL | VAL RELATION VAL;
 OR -> ||;
-INCDEC -> + + | - - 
+INCDEC -> + + | - -;
 WHILE -> while( COMP ) { S };
 FOR -> for ( VAR = VAL VAR RELATION VAL VAR INCDEC ) { S } | for (const VAR in ARRAY ) { S } | for (const VAR of ARRAY ) { S };
 IF -> if ( COMP )  { S } | IF ELIF | IF ELSE | IF BREAK | IF PASS | IF CONTINUE;
