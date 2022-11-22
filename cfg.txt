@@ -1,5 +1,5 @@
 Terminals:
-+ - * / % and or variable number is ! not = > < ( ) true false string ' " if elif else : print input str float int double while for in range def class import as from return raise len range , break pass continue with open null function throw let finally
++ - * / % and or variable number is ! not = > < ( ) { } true false string ' " if elif else : print input str float int double while for in range def class import as from return raise len range , break pass continue with open null function throw let finally
 Variables:
 S RELATION OPARITH BOOLEAN VARRAY ARRAY COMP COMPOPRT OR INCDEC WHILE FOR IF ELIF ELSE VAR VARCLASS VAL VV INBRACKET DELETE FINALLY FUNCTION VARVALFUNC LET NULL THROW RETURN
 Productions:
@@ -37,7 +37,7 @@ COMP -> BOOLEAN | VAR | COMP OPLOGIC COMP | COMPOPRT OPCOMP COMPOPRT | COMPOPRT 
 COMPOPRT -> COMPOPRT OPARITH COMPOPRT | COMPOPRT RELATION COMPOPRT | VAL | VAL OPARITH VAL | VAL * * VAL | VAL / / VAL | VAL > > VAL | VAL < < VAL | VAL RELATION VAL;
 OR -> ||;
 INCDEC -> + + | - -;
-WHILE -> while( COMP ) { S };
+WHILE -> while ( COMP ) { S };
 FOR -> for ( VAR = VAL VAR RELATION VAL VAR INCDEC ) { S } | for (const VAR in ARRAY ) { S } | for (const VAR of ARRAY ) { S };
 IF -> if ( COMP )  { S } | IF ELIF | IF ELSE | IF BREAK | IF PASS | IF CONTINUE;
 ELIF -> else if ( COMP )  { S } | ELIF ELIF | ELIF ELSE;
