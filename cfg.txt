@@ -1,13 +1,13 @@
 Terminals:
 + - * / % and or variable number is ! not = > < ( ) { } true false string ' " if elif else : print input str float int double while for in range def class import as from return raise len range , break pass continue with open null function throw let finally
 Variables:
-S RELATION OPARITH BOOLEAN VARRAY ARRAY COMP COMPOPRT OR INCDEC WHILE FOR IF ELIF ELSE VAR VARCLASS VAL VV INBRACKET DELETE FINALLY FUNCTION VARVALFUNC LET NULL THROW RETURN
+S OPERATOR VAR VARCLASS VAL STRING VV INBRACKET DELETE FINALLY FUNCTION VARVALFUNC LET NULL THROW RETURN VAL BREAK CONTINUE SWITCH CASE DEFAULT CONST VALARRAY ARRAY BOOLEAN TRY CATCH RELATION OPARITH COMP COMPOPRT OR INCDEC WHILE FOR IF ELIF ELSE
 Productions:
 S -> S S | VAR = VV | VAR + = VV | VAR - = VV | VAR * = VV | VAR / = VV | IF | PRINT | WHILE | FOR | FUNCTION | VARCLASS | COMMENT | ARRAY;
 OPERATOR -> + | - | * | / | %;
 VAR -> variable | VARCLASS ;
 VARCLASS -> VARCLASS . VARCLASS | VARCLASS . FUNCTION | variable | FUNCTION;
-VAL -> number | VV OPERATOR VV | VV / / VV | VV * * VV |  ( VV ) | BOOL;
+VAL -> number | VV OPERATOR VV | VV / / VV | VV * * VV |  ( VV ) | BOOLEAN;
 STRING -> STRING + STRING | ' string ' | " string " | ' string ' + ' string ' | " string " + " string " | " string " + ' string ' | ' string ' + " string " | ( STRING );
 VV -> VAR | VAL | VV OPERATOR VV | VV , VV;
 INBRACKET -> ( ) | ( VV );
@@ -15,10 +15,10 @@ DELETE -> delete VAR;
 FINALLY -> finally { S };
 FUNCTION -> VAR ( VARVALFUNC ) | FUNCTION ( FUNCTION ) | VAR ( );
 VARVALFUNC ->  VARVALFUNC , VARVALFUNC | VAL | VAR = VAL;
-LET -> let VV;
+LET -> let VARVALFUNC;
 NULL -> null;
-THROW -> throw BOOL | throw VAL | throw STRING; 
-RETURN -> return VAR | return BOOL | return VAL | return NULL;
+THROW -> throw BOOLEAN | throw VAL | throw STRING; 
+RETURN -> return VAR | return BOOLEAN | return VAL | return NULL;
 VAL -> VAR | STRING | NUMBER | ARRAY | BOOLEAN | BREAK
 BREAK -> break;
 CONTINUE -> continue;
