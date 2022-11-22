@@ -15,7 +15,7 @@ DELETE -> delete VAR;
 FINALLY -> finally { S };
 FUNCTION -> VAR ( VARVALFUNC ) | FUNCTION ( FUNCTION ) | VAR ( );
 VARVALFUNC ->  VARVALFUNC , VARVALFUNC | VAL | VAR = VAL;
-LET -> let VV;
+LET -> let VARVALFUNC;
 NULL -> null;
 THROW -> throw BOOL | throw VAL | throw STRING; 
 RETURN -> return VAR | return BOOL | return VAL | return NULL;
@@ -37,7 +37,7 @@ COMP -> BOOLEAN | VAR | COMP OPLOGIC COMP | COMPOPRT OPCOMP COMPOPRT | COMPOPRT 
 COMPOPRT -> COMPOPRT OPARITH COMPOPRT | COMPOPRT RELATION COMPOPRT | VAL | VAL OPARITH VAL | VAL * * VAL | VAL / / VAL | VAL > > VAL | VAL < < VAL | VAL RELATION VAL;
 OR -> ||;
 INCDEC -> + + | - -;
-WHILE -> while( COMP ) { S };
+WHILE -> while ( COMP ) { S };
 FOR -> for ( VAR = VAL VAR RELATION VAL VAR INCDEC ) { S } | for (const VAR in ARRAY ) { S } | for (const VAR of ARRAY ) { S };
 IF -> if ( COMP )  { S } | IF ELIF | IF ELSE | IF BREAK | IF PASS | IF CONTINUE;
 ELIF -> else if ( COMP )  { S } | ELIF ELIF | ELIF ELSE;
