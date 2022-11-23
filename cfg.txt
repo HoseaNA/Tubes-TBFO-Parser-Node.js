@@ -1,17 +1,18 @@
 Terminals:
-+ - * / % and or variable number is ! not = > < ( ) { } true false string ' " & if elif else : print input str float int double while for in range def class import as from return raise len range , break pass continue with open null function throw let finally switch case
++ - * / % and or variable number is ! not = > < ( ) { } true false string ' " & if elif else : print input str float int double while for in range def class import as from return raise len range , break pass continue with open null function throw let finally switch case delete .
 Variables:
-S OPERATOR VAR VARCLASS VAL STRING VV INBRACKET DELETE FINALLY FUNCTION VARVALFUNC LET NULL THROW RETURN VAL BREAK CONTINUE SWITCH CASE DEFAULT CONST VALARRAY ARRAY BOOLEAN TRY CATCH RELATION OPARITH COMP COMPOPRT OR INCDEC WHILE FOR IF ELIF ELSE FUNCDEC SLOOP IFLOOP ELIFLOOP ELSELOOP SWITCHLOOP CASELOOP DEFAULTLOOP SFUNC IFFUNC ELIFFUNC ELSEFUNC SWITCHFUNC DEFAULTFUNC FORFUNC SLF SWITCHLF CASELF DEFAULTLF
+S OPERATOR VAR VARCLASS VAL STRING VV INBRACKET DELETE DELETEVAL FINALLY FUNCTION VARVALFUNC LET NULL THROW RETURN VAL BREAK CONTINUE SWITCH CASE DEFAULT CONST VALARRAY ARRAY BOOLEAN TRY CATCH RELATION OPARITH COMP COMPOPRT OR INCDEC WHILE FOR IF ELIF ELSE FUNCDEC SLOOP IFLOOP ELIFLOOP ELSELOOP SWITCHLOOP CASELOOP DEFAULTLOOP SFUNC IFFUNC ELIFFUNC ELSEFUNC SWITCHFUNC DEFAULTFUNC FORFUNC SLF SWITCHLF CASELF DEFAULTLF
 Productions:
 S -> S S | VAR = VV | VAR + = VV | VAR - = VV | VAR * = VV | VAR / = VV | IF | PRINT | WHILE | FOR | FUNCTION | VARCLASS | COMMENT | ARRAY | SWITCH | DELETE | LET | TRY | FUNCDEC;
 OPERATOR -> + | - | * | / | %;
 VAR -> variable | VARCLASS ;
 VARCLASS -> VARCLASS . VARCLASS | VARCLASS . FUNCTION | variable | FUNCTION;
 VAL -> number | VV OPERATOR VV | VV / / VV | VV * * VV |  ( VV ) | BOOLEAN | ( VAL );
-STRING -> STRING + STRING | ' string ' | " string " | ' string ' + ' string ' | " string " + " string " | " string " + ' string ' | ' string ' + " string " | ( STRING );
-VV -> VAR | VAL | VV OPERATOR VV | VV , VV;
+STRING -> STRING + STRING | ' string ' | " string " | ( STRING );
+VV -> VAR | VAL | VV OPERATOR VV | VV , VV | VV OPERATOR STRING;
 INBRACKET -> ( ) | ( VV );
-DELETE -> delete VAR;
+DELETE -> delete DELETEVAL;
+DELETEVAL -> VAL | VAL . VAL;
 FINALLY -> finally { S };
 FUNCTION -> VAR ( VV ) | FUNCTION ( FUNCTION ) | VAR ( );
 FUNCDEC -> function FUNCTION { SFUNC RETURN } | function FUNCTION { SFUNC };
@@ -51,7 +52,7 @@ ELSELOOP -> else { SLOOP };
 SWITCHLOOP -> switch ( VAR ) { CASELOOP };
 CASELOOP -> CASELOOP CASELOOP | case VAL : SLOOP | DEFAULT;
 DEFAULTLOOP -> default : SLOOP;
-SFUNC -> SFUNC SFUNC | VAR = VV | VAR + = VV | VAR - = VV | VAR * = VV | VAR / = VV | IFFUNC | PRINT | WHILE | FORFUNC | FUNCTION | VARCLASS | COMMENT | ARRAY | SWITCHFUNC | DELETE | LET | TRY | RETURN | IFFUNC;
+SFUNC -> SFUNC SFUNC | VAR = VV | VAR + = VV | VAR - = VV | VAR * = VV | VAR / = VV | IFFUNC | PRINT | WHILE | FORFUNC | FUNCTION | VARCLASS | COMMENT | ARRAY | SWITCHFUNC | DELETE | LET | TRY | RETURN;
 IFFUNC -> if ( COMP ) { SFUNC } | IFFUNC ELIFFUNC | IFFUNC ELSEFUNC | IFFUNC RETURN;
 ELIFFUNC -> else if ( COMP ) { SFUNC } | ELIFFUNC ELIFFUNC | ELIFFUNC ELSEFUNC;
 ELSEFUNC -> else { SFUNC };
