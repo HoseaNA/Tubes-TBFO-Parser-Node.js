@@ -1,20 +1,21 @@
 Terminals:
-+ - * / % and or variable number is ! not = > < ( ) { } true false string ' " if elif else : print input str float int double while for in range def class import as from return raise len range , break pass continue with open null function throw let finally
++ - * / % and or variable number is ! not = > < ( ) { } true false string ' " & if elif else : print input str float int double while for in range def class import as from return raise len range , break pass continue with open null function throw let finally switch case
 Variables:
-S OPERATOR VAR VARCLASS VAL STRING VV INBRACKET DELETE FINALLY FUNCTION VARVALFUNC LET NULL THROW RETURN VAL BREAK CONTINUE SWITCH CASE DEFAULT CONST VALARRAY ARRAY BOOLEAN TRY CATCH RELATION OPARITH COMP COMPOPRT OR INCDEC WHILE FOR IF ELIF ELSE
+S OPERATOR VAR VARCLASS VAL STRING VV INBRACKET DELETE FINALLY FUNCTION VARVALFUNC LET NULL THROW RETURN VAL BREAK CONTINUE SWITCH CASE DEFAULT CONST VALARRAY ARRAY BOOLEAN TRY CATCH RELATION OPARITH COMP COMPOPRT OR INCDEC WHILE FOR IF ELIF ELSE FUNCDEC
 Productions:
-S -> S S | VAR = VV | VAR + = VV | VAR - = VV | VAR * = VV | VAR / = VV | IF | PRINT | WHILE | FOR | FUNCTION | VARCLASS | COMMENT | ARRAY;
+S -> S S | VAR = VV | VAR + = VV | VAR - = VV | VAR * = VV | VAR / = VV | IF | PRINT | WHILE | FOR | FUNCTION | VARCLASS | COMMENT | ARRAY | SWITCH | DELETE | LET | TRY;
 OPERATOR -> + | - | * | / | %;
 VAR -> variable | VARCLASS ;
 VARCLASS -> VARCLASS . VARCLASS | VARCLASS . FUNCTION | variable | FUNCTION;
-VAL -> number | VV OPERATOR VV | VV / / VV | VV * * VV |  ( VV ) | BOOLEAN;
+VAL -> number | VV OPERATOR VV | VV / / VV | VV * * VV |  ( VV ) | BOOLEAN | ( VAL );
 STRING -> STRING + STRING | ' string ' | " string " | ' string ' + ' string ' | " string " + " string " | " string " + ' string ' | ' string ' + " string " | ( STRING );
 VV -> VAR | VAL | VV OPERATOR VV | VV , VV;
 INBRACKET -> ( ) | ( VV );
 DELETE -> delete VAR;
 FINALLY -> finally { S };
 FUNCTION -> VAR ( VARVALFUNC ) | FUNCTION ( FUNCTION ) | VAR ( );
-VARVALFUNC ->  VARVALFUNC , VARVALFUNC | VAL | VAR = VAL;
+FUNCDEC -> function FUNCTION { S RETURN } |
+VARVALFUNC -> VARVALFUNC , VARVALFUNC | VAL | VAR = VAL;
 LET -> let VARVALFUNC;
 NULL -> null;
 THROW -> throw BOOLEAN | throw VAL | throw STRING; 
@@ -23,8 +24,8 @@ VAL -> VAR | STRING | NUMBER | ARRAY | BOOLEAN | BREAK
 BREAK -> break;
 CONTINUE -> continue;
 SWITCH -> switch ( VAR ) { CASE };
-CASE -> CASE CASE | case ( VAL ) : S | DEFAULT;
-DEFAULT -> default : S ;
+CASE -> CASE CASE | case VAL : S | DEFAULT;
+DEFAULT -> default : S;
 CONST -> const VAR = VAL | const { VAR } = VAR;
 VALARRAY -> VAL | VALARRAY , VALARRAY | ARRAY;
 ARRAY -> [ ] | [ VALARRAY ] | ( ) | ( VALARRAY );
@@ -33,12 +34,13 @@ TRY -> try { S } CATCH;
 CATCH -> catch ( VAR ) { S } | catch ( VAR ) { S } FINALLY;
 RELATION -> > | < | = = | ! = | < = | > = | = = = | ! = =;
 OPARITH -> + | - | * | / | %;
-COMP -> BOOLEAN | VAR | COMP OPLOGIC COMP | COMPOPRT OPCOMP COMPOPRT | COMPOPRT RELATION COMPOPRT;
-COMPOPRT -> COMPOPRT OPARITH COMPOPRT | COMPOPRT RELATION COMPOPRT | VAL | VAL OPARITH VAL | VAL * * VAL | VAL / / VAL | VAL > > VAL | VAL < < VAL | VAL RELATION VAL;
+COMP -> BOOLEAN | VAR | COMPOPRT;
+COMPOPRT -> COMPOPRT OPARITH COMPOPRT | COMPOPRT RELATION COMPOPRT | VAL | VAL OPARITH VAL | VAL * * VAL | VAL / / VAL | VAL > > VAL | VAL < < VAL | VAL RELATION VAL | COMPOPRT OR COMPOPRT | COMPOPRT AND COMPOPRT | ( COMPOPRT );
 OR -> ||;
+AND -> &&;
 INCDEC -> + + | - -;
 WHILE -> while ( COMP ) { S };
 FOR -> for ( VAR = VAL VAR RELATION VAL VAR INCDEC ) { S } | for (const VAR in ARRAY ) { S } | for (const VAR of ARRAY ) { S };
-IF -> if ( COMP )  { S } | IF ELIF | IF ELSE | IF BREAK | IF PASS | IF CONTINUE;
-ELIF -> else if ( COMP )  { S } | ELIF ELIF | ELIF ELSE;
+IF -> if ( COMP ) { S } | IF ELIF | IF ELSE | IF BREAK | IF PASS | IF CONTINUE;
+ELIF -> else if ( COMP ) { S } | ELIF ELIF | ELIF ELSE;
 ELSE -> else { S }
