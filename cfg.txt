@@ -7,7 +7,7 @@ S -> S S | VAR = VV | VAR + = VV | VAR - = VV | VAR * = VV | VAR / = VV | IF | P
 OPERATOR -> + | - | * | / | %;
 VAR -> variable | VARCLASS ;
 VARCLASS -> VARCLASS . VARCLASS | VARCLASS . FUNCTION | variable | FUNCTION;
-VAL -> number | VV OPERATOR VV | VV / / VV | VV * * VV |  ( VV ) | BOOLEAN | ( VAL );
+VAL -> number | VV OPERATOR VV | VV / / VV | VV * * VV |  ( VV ) | BOOLEAN | ( VAL ) | VAR | STRING | NUMBER | ARRAY | BOOLEAN;
 STRING -> STRING + STRING | ' string ' | " string " | ( STRING );
 VV -> VAR | VAL | VV OPERATOR VV | VV , VV | VV OPERATOR STRING;
 INBRACKET -> ( ) | ( VV );
@@ -20,8 +20,7 @@ VARVALFUNC -> VARVALFUNC , VARVALFUNC | VAL | VAR = VAL;
 LET -> let VARVALFUNC;
 NULL -> null;
 THROW -> throw BOOLEAN | throw VAL | throw STRING; 
-RETURN -> return VAR | return BOOLEAN | return VAL | return NULL | return STRING;
-VAL -> VAR | STRING | NUMBER | ARRAY | BOOLEAN | BREAK
+RETURN -> return VAR | return BOOLEAN | return VAL | return NULL | return STRING | return VV;
 BREAK -> break;
 CONTINUE -> continue;
 SWITCH -> switch ( VAR ) { CASE };
@@ -31,7 +30,7 @@ CONST -> const VAR = VAL | const { VAR } = VAR;
 VALARRAY -> VAL | VALARRAY , VALARRAY | ARRAY;
 ARRAY -> [ ] | [ VALARRAY ] | ( ) | ( VALARRAY );
 BOOLEAN -> true | false;
-TRY -> try { S } CATCH;
+TRY -> try { S } CATCH ;
 CATCH -> catch ( VAR ) { S } | catch ( VAR ) { S } FINALLY;
 RELATION -> > | < | = = | ! = | < = | > = | = = = | ! = =;
 COMP -> BOOLEAN | VAR | COMPOPRT;
@@ -45,12 +44,12 @@ FORINC -> FORINC FORINC | VAL = VAL | VAL RELATION VAL | VAL + + | VAL - -;
 IF -> if ( COMP ) { S } | IF ELIF | IF ELSE;
 ELIF -> else if ( COMP ) { S } | ELIF ELIF | ELIF ELSE;
 ELSE -> else { S };
-SLOOP -> SLOOP SLOPP | VAR = VV | VAR + = VV | VAR - = VV | VAR * = VV | VAR / = VV | IFLOOP | PRINT | WHILE | FOR | FUNCTION | VARCLASS | COMMENT | ARRAY | SWITCHLOOP | DELETE | LET | TRY | VAR INCDEC;
-IFLOOP -> if ( COMP ) { SLOOP } | IFLOOP ELIF | IFLOOP ELSE | IFLOOP BREAK | IFLOOP PASS | IFLOOP CONTINUE;
+SLOOP -> SLOOP SLOOP | VV | VAR = VV | VAR + = VV | VAR - = VV | VAR * = VV | VAR / = VV | IFLOOP | PRINT | WHILE | FOR | FUNCTION | VARCLASS | COMMENT | ARRAY | SWITCHLOOP | DELETE | LET | TRY | VAR INCDEC | BREAK | CONTINUE | PASS;
+IFLOOP -> if ( COMP ) { SLOOP } | IFLOOP ELIF | IFLOOP ELSE;
 ELIFLOOP -> else if ( COMP ) { SLOOP } | ELIFLOOP ELIFLOOP | ELIFLOOP ELSELOOP;
 ELSELOOP -> else { SLOOP };
 SWITCHLOOP -> switch ( VAR ) { CASELOOP };
-CASELOOP -> CASELOOP CASELOOP | case VAL : SLOOP | DEFAULT;
+CASELOOP -> CASELOOP CASELOOP | case VAL : SLOOP | DEFAULTLOOP;
 DEFAULTLOOP -> default : SLOOP;
 SFUNC -> SFUNC SFUNC | VAR = VV | VAR + = VV | VAR - = VV | VAR * = VV | VAR / = VV | IFFUNC | PRINT | WHILE | FORFUNC | FUNCTION | VARCLASS | COMMENT | ARRAY | VAR INCDEC | SWITCHFUNC | DELETE | LET | TRY | RETURN;
 IFFUNC -> if ( COMP ) { SFUNC } | IFFUNC ELIFFUNC | IFFUNC ELSEFUNC | IFFUNC RETURN;
@@ -64,4 +63,3 @@ SLF -> SLF SLF | VAR = VV | VAR + = VV | VAR - = VV | VAR * = VV | VAR / = VV | 
 SWITCHLF -> switch ( VAR ) { CASELF };
 CASELF -> CASELF CASELF | case VAL : SFUNC | case VAL : SLOOP | DEFAULTFUNC;
 DEFAULTLF -> DEFAULTFUNC | DEFAULTLOOP
-

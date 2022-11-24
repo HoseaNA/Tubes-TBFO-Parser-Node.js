@@ -15,4 +15,3 @@ function do_something(x) {
       return "Momen";
     }
   }
-  
