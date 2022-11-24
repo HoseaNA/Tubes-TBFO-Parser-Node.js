@@ -113,6 +113,4 @@ if __name__ == '__main__':
 	Productions = DEL(Productions)
 	Productions = UNIT(Productions, variables=V)
 	
-	# print( helper.prettyForm(Productions) )
-	# print( len(Productions) )
 	open('cnf.txt', 'w').write(	helper.prettyForm(Productions) )

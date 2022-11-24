@@ -21,7 +21,6 @@ def cleanProduction(expression):
     result = []
     rawRulse = expression.replace('\n','').split(';')
     for rule in rawRulse:
-        print(rule.split(' -> '))
         leftSide = rule.split(' -> ')[0].replace(' ','')
         rightTerms = rule.split(' -> ')[1].split(' | ')
         for term in rightTerms:
@@ -44,7 +43,6 @@ def seekAndDestroy(target, productions):
 def setupDict(productions, variables, terms):
     result = {}
     for production in productions:
-        #
         if production[left] in variables and production[right][0] in terms and len(production[right]) == 1:
             result[production[right][0]] = production[left]
     return result
@@ -71,7 +69,6 @@ def pprintRules(rules):
         tot = ""
         for term in rule[right]:
             tot = tot +" "+ term
-        print(rule[left]+" -> "+tot)
 
 def prettyForm(rules):
     dictionary = {}

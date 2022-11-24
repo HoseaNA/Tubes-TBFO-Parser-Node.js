@@ -111,12 +111,6 @@ class CykParser:
                             if p2 in self.chomskyGrammar:
                                 insertTable(i, j, p2)
 
-    # def __printCYKTable(self):
-    #     if len(self.cykTable) > 10:
-    #         print("...\n...")
-    #     for table in self.cykTable[-10:]:
-    #         print(table)
-
     def __result(self):
         if self.cykTable and 'S' in self.cykTable[-1][-1]:
             print("Accepted")
@@ -128,7 +122,6 @@ class CykParser:
         self.__readInputFile()
         if self.validString:
             self.__makeCYKTable()
-            # self.__printCYKTable()
             self.__result()
         else:
             print(f"String error in line {self.err_line}")

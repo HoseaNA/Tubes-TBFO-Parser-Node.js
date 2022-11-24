@@ -1,16 +1,3 @@
-# SIGMA
-# upper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
-#          "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-# lower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-#          'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-# number = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-# underscore = ['_']
-# anotherAscii = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.',
-#                 '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '`', '{', '|', '}', '~'] -> 8 bit printable except whitespaces
-
-# STATES
-# start, dead, final -> accepted state is final state
-
 finiteAutomata = {
     'start': {
         'A': 'final', 'B': 'final', 'C': 'final', 'D': 'final', 'E': 'final', 'F': 'final', 'G': 'final', 'H': 'final', 'I': 'final', 'J': 'final', 'K': 'final', 'L': 'final', 'M': 'final', 'N': 'final', 'O': 'final', 'P': 'final', 'Q': 'final', 'R': 'final', 'S': 'final', 'T': 'final', 'U': 'final', 'V': 'final', 'W': 'final', 'X': 'final', 'Y': 'final', 'Z': 'final',
