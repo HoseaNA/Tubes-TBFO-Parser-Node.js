@@ -1,5 +1,5 @@
 Terminals:
-+ - * / % and or variable number is ! not = > < ( ) { } true false string ' " & if elif else : print input str float int double while for in range def class import as from return raise len range , break pass continue with open null function throw let finally switch case delete . || &&
++ - * / % and or variable number is ! not = > < ( ) { } true false string ' " & if elif else : print input str float int double while for in range def class import as from return raise len range , break pass continue with open null function throw let finally switch case delete . || && try catch default
 Variables:
 S OPERATOR VAR VARCLASS VAL STRING VV INBRACKET DELETE DELETEVAL FINALLY FUNCTION VARVALFUNC LET NULL THROW RETURN VAL BREAK CONTINUE SWITCH CASE DEFAULT CONST VALARRAY ARRAY BOOLEAN TRY CATCH RELATION OPERATOR COMP COMPOPRT OR INCDEC WHILE FOR IF ELIF ELSE FUNCDEC SLOOP IFLOOP ELIFLOOP ELSELOOP SWITCHLOOP CASELOOP DEFAULTLOOP SFUNC IFFUNC ELIFFUNC ELSEFUNC SWITCHFUNC DEFAULTFUNC FORFUNC SLF SWITCHLF CASELF DEFAULTLF
 Productions:
@@ -24,13 +24,13 @@ RETURN -> return VAR | return BOOLEAN | return VAL | return NULL | return STRING
 BREAK -> break;
 CONTINUE -> continue;
 SWITCH -> switch ( VAR ) { CASE };
-CASE -> CASE CASE | case VAL : S | DEFAULT;
+CASE -> CASE CASE | case VAL : SLOOP | DEFAULT;
 DEFAULT -> default : S;
 CONST -> const VAR = VAL | const { VAR } = VAR;
 VALARRAY -> VAL | VALARRAY , VALARRAY | ARRAY;
 ARRAY -> [ ] | [ VALARRAY ] | ( ) | ( VALARRAY );
 BOOLEAN -> true | false;
-TRY -> try { S } CATCH ;
+TRY -> try { S } CATCH  | try { S };
 CATCH -> catch ( VAR ) { S } | catch ( VAR ) { S } FINALLY;
 RELATION -> > | < | = = | ! = | < = | > = | = = = | ! = =;
 COMP -> BOOLEAN | VAR | COMPOPRT;
@@ -57,7 +57,7 @@ ELIFFUNC -> else if ( COMP ) { SFUNC } | ELIFFUNC ELIFFUNC | ELIFFUNC ELSEFUNC;
 ELSEFUNC -> else { SFUNC };
 SWITCHFUNC -> switch ( VAR ) { CASEFUNC };
 CASEFUNC -> CASEFUNC CASEFUNC | case VAL : SFUNC | DEFAULT;
-DEFAULTFUNC -> default : S;
+DEFAULTFUNC -> default : SFUNC;
 FORFUNC -> for ( VAR = VAL VAR RELATION VAL VAR INCDEC ) { SLF } | for ( const VAR in ARRAY ) { SLF } | for ( const VAR of ARRAY ) { SLF };
 SLF -> SLF SLF | VAR = VV | VAR + = VV | VAR - = VV | VAR * = VV | VAR / = VV | IFFUNC | IFLOOP | PRINT | WHILE | FORFUNC | FUNCTION | VARCLASS | COMMENT | ARRAY | SWITCHFUNC | DELETE | LET | TRY | RETURN | VAR INCDEC;
 SWITCHLF -> switch ( VAR ) { CASELF };
