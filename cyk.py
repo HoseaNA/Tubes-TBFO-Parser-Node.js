@@ -16,7 +16,7 @@ class CykParser:
         self.contents: str
         self.err_line = 0
 
-    def __loadGrammar(self): ## Load grammar CNF
+    def __loadGrammar(self):
         f = open(self.cnfPath, "r")
         rules = f.readlines()
         for i in range(len(rules)):
@@ -30,7 +30,7 @@ class CykParser:
                     self.chomskyGrammar.update({options[j]: [origin]})
         f.close()
 
-    def __string_analyzer(self): ## Validasi string dan comment
+    def __string_analyzer(self):
         stack_like = []
         current_line = 0
         comment = ['\'\'\'[\S\n\t ]+?\'\'\'', '\"\"\"[\S\n\t ]+?\"\"\"', '\#[^\n\r]*']
@@ -57,7 +57,7 @@ class CykParser:
         else:
             self.validString = False
 
-    def __readInputFile(self): ## Tokenize input
+    def __readInputFile(self):
         f = open(self.testFile, "r")
         self.contents = f.read()
         self.__string_analyzer()
@@ -79,11 +79,11 @@ class CykParser:
         self.validString = True
         self.inputText = cleaned_contents
 
-    def __insertTable(self, level, position, key): ## Helper insert Tabel CYK
+    def __insertTable(self, level, position, key):
         for rule in self.chomskyGrammar[key]:
             self.cykTable[level][position].add(rule)
 
-    def __makeCYKTable(self): ## CYK Algorithm
+    def __makeCYKTable(self):
         FA = fa.FA
         inputText = self.inputText
         insertTable = self.__insertTable
