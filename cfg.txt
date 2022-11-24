@@ -1,5 +1,5 @@
 Terminals:
-+ - * / % variable number is ! not = > < ( ) { } true false string ' " & if else : console log input str float int double while for in range def class import as from return raise len range , break pass continue with open null function throw let finally switch case delete . || && try catch default
++ - * / % variable number is ! not = > < ( ) { } true false string ' " & if else : console log input str float int double while for in range def class import as from return raise len range , break pass continue with open null function throw let finally switch case delete . | & try catch default
 Variables:
 S OPERATOR VAR VARCLASS VAL STRING VV INBRACKET DELETE DELETEVAL FINALLY FUNCTION VARVALFUNC LET NULL THROW RETURN VAL BREAK CONTINUE SWITCH CASE DEFAULT CONST VALARRAY ARRAY BOOLEAN TRY CATCH RELATION OPERATOR COMP COMPOPRT OR INCDEC WHILE FOR IF ELIF ELSE FUNCDEC SLOOP IFLOOP ELIFLOOP ELSELOOP SWITCHLOOP CASELOOP DEFAULTLOOP SFUNC IFFUNC ELIFFUNC ELSEFUNC SWITCHFUNC DEFAULTFUNC FORFUNC SLF SWITCHLF CASELF DEFAULTLF
 Productions:
@@ -20,7 +20,7 @@ VARVALFUNC -> VARVALFUNC , VARVALFUNC | VAL | VAR = VAL;
 LET -> let VARVALFUNC;
 NULL -> null;
 THROW -> throw BOOLEAN | throw VAL | throw STRING; 
-RETURN -> return VAR | return BOOLEAN | return VAL | return NULL | return STRING | return VV;
+RETURN -> return VAR | return BOOLEAN | return VAL | return NULL | return STRING | return VV | return;
 BREAK -> break;
 CONTINUE -> continue;
 SWITCH -> switch ( VAR ) { CASE };
