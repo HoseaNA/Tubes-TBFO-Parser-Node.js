@@ -12,22 +12,15 @@ def loadModel(modelPath):
     script_location = Path(__file__).absolute().parent
     file_location = script_location/modelPath
     file = open(file_location).read()
-    # file = open(modelPath).read()
-    # print(file.split("Variables:\n"))
     K = (file.split("Variables:\n")[0].replace("Terminals:\n","").replace("\n",""))
     V = (file.split("Variables:\n")[1].split("Productions:\n")[0].replace("Variables:\n","").replace("\n",""))
     P = (file.split("Productions:\n")[1])
-    
     return cleanAlphabet(K), cleanAlphabet(V), cleanProduction(P)
     
-#Make production easy to work with
 def cleanProduction(expression):
     result = []
-    #remove spaces and explode on ";"
     rawRulse = expression.replace('\n','').split(';')
-
     for rule in rawRulse:
-        #Explode evry rule on "->" and make a couple
         print(rule.split(' -> '))
         leftSide = rule.split(' -> ')[0].replace(' ','')
         rightTerms = rule.split(' -> ')[1].split(' | ')
@@ -59,16 +52,9 @@ def setupDict(productions, variables, terms):
 
 def rewrite(target, production):
     result = []
-    #get positions corresponding to the occurrences of target in production right side
-    #positions = [m.start() for m in re.finditer(target, production[right])]
     positions = [i for i,x in enumerate(production[right]) if x == target]
-    #for all found targets in production
     for i in range(len(positions)+1):
-         #for all combinations of all possible lenght phrases of targets
          for element in list(itertools.combinations(positions, i)):
-             #Example: if positions is [1 4 6]
-             #now i've got: [] [1] [4] [6] [1 4] [1 6] [4 6] [1 4 6]
-             #erease position corresponding to the target in production right side
              tadan = [production[right][i] for i in range(len(production[right])) if i not in element]
              if tadan != []:
                  result.append((production[left], tadan))
