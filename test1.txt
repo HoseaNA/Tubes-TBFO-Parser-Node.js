@@ -10,6 +10,6 @@ while (x>=1) {
     if (y != 8) {
         y = y+p;
     } else {
-        continue;
+        break;
     }
 }
