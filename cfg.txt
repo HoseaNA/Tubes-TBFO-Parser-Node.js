@@ -1,5 +1,5 @@
 Terminals:
-+ - * / % var variable number ! = > < ( ) { } true false string ' " & if else : console log while for in from return , break continue null function throw let finally switch case delete . | & try catch default
++ - * / % var variable number ! = > < ( ) { } true false string ' " & if else : while for in from return , break continue null function throw let finally switch case delete . | try catch default
 Variables:
 S OPERATOR VAR VARCLASS VAL STRING VV DELETE DELETEVAL FINALLY FUNCTION VARVALFUNC VARDEC LET NULL THROW RETURN BREAK CONTINUE SWITCH CASE DEFAULT CONST VALARRAY ARRAY BOOLEAN TRY CATCH RELATION OPERATOR COMP COMPOPRT OR INCDEC WHILE FOR IF ELIF ELSE FUNCDEC SLOOP IFLOOP ELIFLOOP ELSELOOP SWITCHLOOP CASELOOP DEFAULTLOOP SFUNC IFFUNC ELIFFUNC ELSEFUNC SWITCHFUNC CASEFUNC DEFAULTFUNC FORFUNC SLF SWITCHLF CASELF DEFAULTLF
 Productions:
