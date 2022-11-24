@@ -1,8 +1,0 @@
-switch (p) {
-    case 1:
-    x = x+1;
-    case 2:
-    break;
-    default:
-    x = x+2;
-}

@@ -1,5 +1,5 @@
 Terminals:
-+ - * / % and or variable number is ! not = > < ( ) { } true false string ' " & if elif else : print input str float int double while for in range def class import as from return raise len range , break pass continue with open null function throw let finally switch case delete . || && try catch default
++ - * / % variable number is ! not = > < ( ) { } true false string ' " & if else : console log input str float int double while for in range def class import as from return raise len range , break pass continue with open null function throw let finally switch case delete . || && try catch default
 Variables:
 S OPERATOR VAR VARCLASS VAL STRING VV INBRACKET DELETE DELETEVAL FINALLY FUNCTION VARVALFUNC LET NULL THROW RETURN VAL BREAK CONTINUE SWITCH CASE DEFAULT CONST VALARRAY ARRAY BOOLEAN TRY CATCH RELATION OPERATOR COMP COMPOPRT OR INCDEC WHILE FOR IF ELIF ELSE FUNCDEC SLOOP IFLOOP ELIFLOOP ELSELOOP SWITCHLOOP CASELOOP DEFAULTLOOP SFUNC IFFUNC ELIFFUNC ELSEFUNC SWITCHFUNC DEFAULTFUNC FORFUNC SLF SWITCHLF CASELF DEFAULTLF
 Productions:
@@ -27,10 +27,11 @@ SWITCH -> switch ( VAR ) { CASE };
 CASE -> CASE CASE | case VAL : SLOOP | DEFAULT;
 DEFAULT -> default : S;
 CONST -> const VAR = VAL | const { VAR } = VAR;
+PRINT -> console . log ( VAR ) | console . log ( VAL );
 VALARRAY -> VAL | VALARRAY , VALARRAY | ARRAY;
 ARRAY -> [ ] | [ VALARRAY ] | ( ) | ( VALARRAY );
 BOOLEAN -> true | false;
-TRY -> try { S } CATCH  | try { S };
+TRY -> try { S } CATCH;
 CATCH -> catch ( VAR ) { S } | catch ( VAR ) { S } FINALLY;
 RELATION -> > | < | = = | ! = | < = | > = | = = = | ! = =;
 COMP -> BOOLEAN | VAR | COMPOPRT;
@@ -51,7 +52,7 @@ ELSELOOP -> else { SLOOP };
 SWITCHLOOP -> switch ( VAR ) { CASELOOP };
 CASELOOP -> CASELOOP CASELOOP | case VAL : SLOOP | DEFAULTLOOP;
 DEFAULTLOOP -> default : SLOOP;
-SFUNC -> SFUNC SFUNC | VAR = VV | VAR + = VV | VAR - = VV | VAR * = VV | VAR / = VV | IFFUNC | PRINT | WHILE | FORFUNC | FUNCTION | VARCLASS | COMMENT | ARRAY | VAR INCDEC | SWITCHFUNC | DELETE | LET | TRY | RETURN;
+SFUNC -> SFUNC SFUNC | THROW | VAR = VV | VAR + = VV | VAR - = VV | VAR * = VV | VAR / = VV | IFFUNC | PRINT | WHILE | FORFUNC | FUNCTION | VARCLASS | COMMENT | ARRAY | VAR INCDEC | SWITCHFUNC | DELETE | LET | TRY | RETURN;
 IFFUNC -> if ( COMP ) { SFUNC } | IFFUNC ELIFFUNC | IFFUNC ELSEFUNC | IFFUNC RETURN;
 ELIFFUNC -> else if ( COMP ) { SFUNC } | ELIFFUNC ELIFFUNC | ELIFFUNC ELSEFUNC;
 ELSEFUNC -> else { SFUNC };
@@ -59,7 +60,7 @@ SWITCHFUNC -> switch ( VAR ) { CASEFUNC };
 CASEFUNC -> CASEFUNC CASEFUNC | case VAL : SFUNC | DEFAULT;
 DEFAULTFUNC -> default : SFUNC;
 FORFUNC -> for ( VAR = VAL VAR RELATION VAL VAR INCDEC ) { SLF } | for ( const VAR in ARRAY ) { SLF } | for ( const VAR of ARRAY ) { SLF };
-SLF -> SLF SLF | VAR = VV | VAR + = VV | VAR - = VV | VAR * = VV | VAR / = VV | IFFUNC | IFLOOP | PRINT | WHILE | FORFUNC | FUNCTION | VARCLASS | COMMENT | ARRAY | SWITCHFUNC | DELETE | LET | TRY | RETURN | VAR INCDEC;
+SLF -> SLF SLF | THROW | VAR = VV | VAR + = VV | VAR - = VV | VAR * = VV | VAR / = VV | IFFUNC | IFLOOP | PRINT | WHILE | FORFUNC | FUNCTION | VARCLASS | COMMENT | ARRAY | SWITCHFUNC | DELETE | LET | TRY | RETURN | VAR INCDEC;
 SWITCHLF -> switch ( VAR ) { CASELF };
 CASELF -> CASELF CASELF | case VAL : SFUNC | case VAL : SLOOP | DEFAULTFUNC;
 DEFAULTLF -> DEFAULTFUNC | DEFAULTLOOP
