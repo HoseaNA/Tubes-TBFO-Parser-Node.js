@@ -1,0 +1,7 @@
+try {
+    x = x+1;
+} catch (p) {
+    x = x-3;
+} finally {
+    x = x * x;
+}

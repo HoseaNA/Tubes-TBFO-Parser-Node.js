@@ -1,0 +1,8 @@
+for (i=0; i<5; i++) {
+    p = p+4;
+    if (p == 3) {
+        continue;
+    } else if (p == 7) {
+        break;
+    }
+}

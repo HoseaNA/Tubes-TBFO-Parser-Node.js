@@ -1,0 +1,10 @@
+switch (x) {
+    case 1:
+        x = x+1;
+    case 3:
+        x = x-3;
+    case 4:
+        break;
+    default:
+        x = x;
+}
