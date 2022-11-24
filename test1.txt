@@ -1,0 +1,15 @@
+let x = 10;
+const p = 2;
+var y = 3;
+
+while (x>=1) {
+    x = x+1;
+    if (x == 3) {
+        continue;
+    }
+    if (y != 8) {
+        y = y+p;
+    } else {
+        continue;
+    }
+}
