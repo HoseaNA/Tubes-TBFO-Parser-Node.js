@@ -30,7 +30,7 @@ class FA:
 
     # Menelusuri setiap karakter dan mengubah state berdasarkan karakter
     # yang ditemui
-    def readSymbol(self):
+    def readVar(self):
         for char in self.string:
             self.currentState = finiteAutomata[self.currentState][char]
         return self.currentState == self.accept

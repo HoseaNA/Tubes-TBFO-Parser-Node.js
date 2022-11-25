@@ -105,7 +105,7 @@ class CykParser:
                 insertTable(0, i, self.inputText[i])
             else:
                 variable = FA(inputText[i])
-                if variable.readSymbol():
+                if variable.readVar():
                     insertTable(0, i, 'variable')
                 if re.match(r'[0-9]*', inputText[i]):
                     insertTable(0, i, 'number')

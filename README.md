@@ -19,11 +19,11 @@ Program ini merupakan program parser bahasa pemrograman JavaScript menggunakan m
 3. Siapkan kode Node.js yang akan diparsing pada suatu file txt
 4. Eksekusi program utama secara langsung dengan command:
    ```
-   py cyk.py {nama file}
+   py mainCYK.py {nama file}
    ```
    atau
    ```
-   py cyk.py
+   py mainCYK.py
    ```
    hingga muncul tampilan:
   
