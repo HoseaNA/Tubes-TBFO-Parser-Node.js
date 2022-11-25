@@ -6,6 +6,10 @@ import fa
 
 class CykParser:
 
+    # Menginisialisasi program utama dengan menerima path file cnf. path file test.
+    # chomsky grammar (cnf dari txt file), kondisi string valid atau tidak, input text yang dibentuk
+    # menjadi list, tabel cyk, hasil pembacaan file test, dan err_line yang menyimpan lokasi kesalahan
+    # penulisan string
     def __init__(self, cnfPath, testFile):
         self.cnfPath = cnfPath
         self.testFile = testFile
@@ -16,6 +20,8 @@ class CykParser:
         self.contents: str
         self.err_line = 0
 
+    # Membaca file cnf dari path yang sudah diinisialisasi dan diolah untuk 
+    # dimasukkan ke dalam chomskuGrammar
     def __loadGrammar(self):
         f = open(self.cnfPath, "r")
         rules = f.readlines()
@@ -30,11 +36,10 @@ class CykParser:
                     self.chomskyGrammar.update({options[j]: [origin]})
         f.close()
 
+    # Menganalisis string dan memvalidasikannya
     def __string_analyzer(self):
         stack_like = []
         current_line = 0
-        comment = ['\'\'\'[\S\n\t ]+?\'\'\'', '\"\"\"[\S\n\t ]+?\"\"\"', '\#[^\n\r]*']
-        self.contents = re.sub('|'.join(comment), '', self.contents)
         for line in self.contents.split("\n"):
             current_line += 1
             for char in line:
@@ -57,6 +62,8 @@ class CykParser:
         else:
             self.validString = False
 
+    # Melakukan formatting pada setiap ekspresi yang ada sehingga membentuk simbol
+    # terminal yang valid dan membersihkan string kosong
     def __readInputFile(self):
         f = open(self.testFile, "r")
         self.contents = f.read()
@@ -79,10 +86,13 @@ class CykParser:
         self.validString = True
         self.inputText = cleaned_contents
 
+    # Memasukkan ekspresi ke dalam tabel cyk
     def __insertTable(self, level, position, key):
         for rule in self.chomskyGrammar[key]:
             self.cykTable[level][position].add(rule)
 
+    # Melakukan validasi variabel, angka, dan string dan semua ekspresi lainnya
+    # dan diletakkan pada cyk table
     def __makeCYKTable(self):
         FA = fa.FA
         inputText = self.inputText
@@ -111,12 +121,14 @@ class CykParser:
                             if p2 in self.chomskyGrammar:
                                 insertTable(i, j, p2)
 
+    # Menunjukkan hasil apakah kode valid atau tidak
     def __result(self):
         if self.cykTable and 'S' in self.cykTable[-1][-1]:
             print("Accepted")
         else:
             print("Syntax error!")
 
+    # Memanggil setiap fungsi berdasarkan kondisi yang memenuhi
     def validate(self):
         self.__loadGrammar()
         self.__readInputFile()
@@ -126,7 +138,7 @@ class CykParser:
         else:
             print(f"String error in line {self.err_line}")
 
-
+# Memulai program utama
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         testPath = str(sys.argv[1])

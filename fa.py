@@ -1,3 +1,4 @@
+# Transisi setiap karakter
 finiteAutomata = {
     'start': {
         'A': 'final', 'B': 'final', 'C': 'final', 'D': 'final', 'E': 'final', 'F': 'final', 'G': 'final', 'H': 'final', 'I': 'final', 'J': 'final', 'K': 'final', 'L': 'final', 'M': 'final', 'N': 'final', 'O': 'final', 'P': 'final', 'Q': 'final', 'R': 'final', 'S': 'final', 'T': 'final', 'U': 'final', 'V': 'final', 'W': 'final', 'X': 'final', 'Y': 'final', 'Z': 'final',
@@ -21,11 +22,14 @@ finiteAutomata = {
 
 
 class FA:
+    # inisialisasi string yang akan dicheck
     def __init__(self, string) -> None:
         self.currentState = 'start'
         self.accept = 'final'
         self.string = string
 
+    # Menelusuri setiap karakter dan mengubah state berdasarkan karakter
+    # yang ditemui
     def readSymbol(self):
         for char in self.string:
             self.currentState = finiteAutomata[self.currentState][char]

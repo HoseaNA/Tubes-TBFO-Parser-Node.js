@@ -1,0 +1,12 @@
+function adaapa(dengancinta, yangtakdatang) {
+    for (i = 0; i < 5; i++) {
+        z = i + z;
+        for (j = 0; j < 5; j++) {
+            x = z + j;
+            for (k = 0; k < 5; k++) {
+                y = x + k;
+            }
+        }
+    }
+    return A;
+}

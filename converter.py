@@ -12,22 +12,24 @@ variablesJar = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
                 "A5", "B5", "C5", "D5", "E5", "F5", "G5", "H5", "I5", "J5", "K5", "L5", "M5", "N5", "O5", "P5", "Q5", "R5", "S5", "T5", "U5", "W5", "X5", "Y5", "Z5",
                 "A6", "B6", "C6", "D6", "E6", "F6", "G6", "H6", "I6", "J6", "K6", "L6", "M6", "N6", "O6", "P6", "Q6", "R6", "S6", "T6", "U6", "W6", "X6", "Y6", "Z6",]
 
-
+# Memastikan apakah rule memiliki produksi satu variabel
 def isUnitary(rule, variables):
 	if rule[left] in variables and rule[right][0] in variables and len(rule[right]) == 1:
 		return True
 	return False
 
+# Memastikan apakah rule memiliki produksi satu terminal
 def isSimple(rule):
 	if rule[left] in V and rule[right][0] in K and len(rule[right]) == 1:
 		return True
 	return False
 
-
+# Menambahkan simbol S0 sebagai start symbol
 def START(productions, variables):
 	variables.append('S0')
 	return [('S0', [variables[0]])] + productions
 
+# Menghapus produksi simbol, terminal, dan variabel yang tergabung
 def TERM(productions, variables):
 	newProductions = []
 	dictionary = helper.setupDict(productions, variables, terms=K)
@@ -47,6 +49,7 @@ def TERM(productions, variables):
 			newProductions.append( (production[left], production[right]) )
 	return newProductions
 
+# Menghapus produksi yang menghasilkan lebih dari 2 variabel
 def BIN(productions, variables):
 	result = []
 	for production in productions:
@@ -64,7 +67,8 @@ def BIN(productions, variables):
 				result.append( (var, [production[right][i], var2]) )
 			result.append( (newVar+str(k-2), production[right][k-2:k]) ) 
 	return result
-	
+
+# Menghapus produksi yang tidak menghasilkan simbol terminal
 def DEL(productions):
 	newSet = []
 	outlaws, productions = helper.seekAndDestroy(target='e', productions=productions)
@@ -75,6 +79,7 @@ def DEL(productions):
 	return newSet + ([productions[i] for i in range(len(productions)) 
 							if productions[i] not in newSet])
 
+# Memastikan produksi merupakan unitary dan bisa diganti
 def unit_routine(rules, variables):
 	unitaries, result = [], []
 	for aRule in rules:
@@ -89,6 +94,7 @@ def unit_routine(rules, variables):
 	
 	return result
 
+# Menghapus unitary production dari suatu produksi
 def UNIT(productions, variables):
 	i = 0
 	result = unit_routine(productions, variables)
@@ -99,6 +105,7 @@ def UNIT(productions, variables):
 		i+=1
 	return result
 
+# Memulai konversi
 if __name__ == '__main__':
 	if len(sys.argv) > 1:
 		modelPath = str(sys.argv[1])
