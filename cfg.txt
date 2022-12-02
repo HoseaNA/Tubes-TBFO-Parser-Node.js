@@ -7,7 +7,7 @@ S -> S S | VAR = VV | VAR + = VV | VAR - = VV | VAR * = VV | VAR / = VV | IF | W
 OPERATOR -> + | - | * | / | %;
 VAR -> variable | VARCLASS ;
 VARCLASS -> VARCLASS . VARCLASS | VARCLASS . FUNCTION | variable | FUNCTION;
-VAL -> number | VV OPERATOR VV | VV / / VV | VV * * VV |  ( VV ) | BOOLEAN | ( VAL ) | VAR | STRING | NUMBER | ARRAY | BOOLEAN;
+VAL -> number | - number | VV OPERATOR VV | VV / / VV | VV * * VV |  ( VV ) | BOOLEAN | ( VAL ) | VAR | STRING | NUMBER | ARRAY | BOOLEAN;
 STRING -> STRING + STRING | ' string ' | " string " | ( STRING );
 VV -> VAR | VAL | VV OPERATOR VV | VV , VV | VV OPERATOR STRING;
 DELETE -> delete DELETEVAL;
